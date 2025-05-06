@@ -1,0 +1,80 @@
+66. Plus One
+# Day 07 - Plus One
+
+## Problem:
+Given an array `digits` representing a large integer, increment it by one.
+
+## Example:
+Input: [9,9,9]  
+Output: [1,0,0,0]
+
+## Approach:
+- Traverse the array from the end.
+- If digit < 9, increment and return.
+- If digit is 9, set to 0 and continue (carry over).
+- If loop finishes, prepend 1 to the array.
+
+## Code:
+class Solution {
+ public:
+  vector<int> plusOne(vector<int>& digits) {
+    for (int i = digits.size() - 1; i >= 0; --i) {
+      if (digits[i] < 9) {
+        ++digits[i];
+        return digits;
+      }
+      digits[i] = 0;
+    }
+
+    digits.insert(digits.begin(), 1);
+    return digits;
+  }
+};
+
+61.   ROTATE LIST
+    # Day XX - Rotate List
+
+## Problem
+Given the head of a singly linked list, rotate the list to the right by `k` places.
+
+## Example
+Input: [1, 2, 3, 4, 5], k = 2  
+Output: [4, 5, 1, 2, 3]
+
+## Approach
+- If list is empty or has one node, return as is.
+- Calculate the length of the list.
+- Make the list circular by connecting tail to head.
+- Compute `k % length` to avoid unnecessary rotations.
+- Find the new tail node and break the circle to form the rotated list.
+
+## Time Complexity
+- O(n), where n is the number of nodes in the list.
+
+## Space Complexity
+- O(1), since we're modifying the list in-place.
+
+## Files
+- class Solution {
+ public:
+  ListNode* rotateRight(ListNode* head, int k) {
+    if (!head || !head->next || k == 0)
+      return head;
+
+    ListNode* tail;
+    int length = 1;
+    for (tail = head; tail->next; tail = tail->next)
+      ++length;
+    tail->next = head;  // Circle the list.
+
+    const int t = length - k % length;
+    for (int i = 0; i < t; ++i)
+      tail = tail->next;
+    ListNode* newHead = tail->next;
+    tail->next = nullptr;
+
+    return newHead;
+  }
+};
+
+
