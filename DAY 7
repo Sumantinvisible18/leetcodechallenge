@@ -32,7 +32,7 @@ class Solution {
 };
 
 61.   ROTATE LIST
-    # Day XX - Rotate List
+    # Day 07 - Rotate List
 
 ## Problem
 Given the head of a singly linked list, rotate the list to the right by `k` places.
